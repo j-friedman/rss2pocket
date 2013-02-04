@@ -70,13 +70,15 @@ if __name__ == '__main__':
 
    arg_parser = argparse.ArgumentParser(description='Send RSS feeds to a Pocket account.')
    group = arg_parser.add_mutually_exclusive_group()
-   arg_parser.add_argument('-a', '--add', action='store', help='add url for another feed')
-   arg_parser.add_argument('-l', '--list', action='store_true', help='list feeds')
-   arg_parser.add_argument('-d', '--delete', action='store', help='delete feed from list')
-   arg_parser.add_argument('-r', '--run', action='store_true', help='fetch and deliver feeds')
-   arg_parser.add_argument('-e', '--email', action='store', help='set sender email address')
+   group.add_argument('-a', '--add', action='store', help='add url for another feed')
+   group.add_argument('-l', '--list', action='store_true', help='list feeds')
+   group.add_argument('-d', '--delete', action='store', help='delete feed from list')
+   group.add_argument('-r', '--run', action='store_true', help='fetch and deliver feeds')
+   group.add_argument('-e', '--email', action='store', help='set sender email address')
 
    args = arg_parser.parse_args()
+   
+   print vars(args)
 
    if vars(args)['email']:
       config['from'] = vars(args)['email']
